@@ -2,7 +2,9 @@
   <div>   
     <img alt="Peaks logo" src="./assets/PeaksTextBlack.png">
     <div class="container">
-      <button @click="showNotification">Notification button</button>
+      <button class="buttons" @click="showNotification">Notification button</button>
+      <button class="buttons" @click="showNotification2">Notification2 button</button>
+      <!-- Different types of push-notifications to notify the user -->
     </div>
   </div>
 </template>
@@ -11,32 +13,33 @@
 export default {
   data() {
     return {
-      mm: 0,
+      mm:  Math.floor(Math.random()*100), //can be interchanged with a variable that shows live data
+      stresspeaks:  Math.floor(Math.random()*10), //amount of measured "Peaks" which pass the threshold set by the user
+      timeslot: 'Middag', //split the day in different timeslots (morning, afternoon, evening, midnight)
+      user: 'Dennis',
     }
   },
-  mounted() {
-  // this.checkperm()
-},
   methods: {
     showNotification() {
-      this.mm = Math.floor(Math.random()*100);
-      new Notification("New message from Peaks!", {
-        body: "Hey Dennis!\nIk zag dat je een stresslevel van " + this.mm + " Hebt",
+      const notification = new Notification("New message from Peaks!", {
+        body: "Hey " + this.user + "!\nIk zag dat je een stresslevel van " + this.mm + " had. Zou je mij daar meer info over kunnen geven?",
         icon: "https://i.imgur.com/DGlDio3.png",
       });
-      console.log(Notification.permission)
+      notification.onclick = function(event) {
+        event.preventDefault();
+        window.open('https://www.google.nl/', '_blank') //action which takes place after clicking on the notification
+      }
     },
-    // checkperm() {
-    //   if (Notification.permission === "granted") {
-    //     showNotification();
-    //     } else if (Notification.permission !== "denied") {
-    //     Notification.requestPermission().then(permission => {
-    //       if (permission === "granted") {
-    //         showNotification();
-    //       }
-    //     })
-    //   }
-    // },
+    showNotification2() {
+      const notification = new Notification("New message from Peaks!", {
+        body: "Hey " + this.user + "!\nIk zag dat je deze " + this.tijdslot + ' ' + this.stresspeaks + " stresspieken had. Zou je mij daar meer info over kunnen geven?",
+        icon: "https://i.imgur.com/DGlDio3.png",
+      });
+      notification.onclick = function(event) {
+        event.preventDefault();
+        new Audio(require("./assets/yipee.mp3")).play(); // just for fun for now
+      }
+    },
   }  
 }
 </script>
@@ -53,5 +56,8 @@ export default {
 .container {
   text-align: center;
   margin-top: 100px;
+}
+.buttons {
+  margin: 10px;
 }
 </style>
