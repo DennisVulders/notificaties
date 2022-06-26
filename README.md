@@ -1,5 +1,5 @@
 # notificaties
-
+Dit is een prototype van de hoe de notificaties eruit zouden kunnen komen te zien op de windows versie van de stresscoach app.
 ## Project setup
 ```
 npm install

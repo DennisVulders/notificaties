@@ -37,7 +37,7 @@ export default {
       });
       notification.onclick = function(event) {
         event.preventDefault();
-        new Audio(require("./assets/yipee.mp3")).play(); // just for fun for now
+        window.open('https://www.google.nl/', '_blank')
       }
     },
   }  
