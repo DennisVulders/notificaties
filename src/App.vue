@@ -32,7 +32,7 @@ export default {
     },
     showNotification2() {
       const notification = new Notification("New message from Peaks!", {
-        body: "Hey " + this.user + "!\nIk zag dat je deze " + this.tijdslot + ' ' + this.stresspeaks + " stresspieken had. Zou je mij daar meer info over kunnen geven?",
+        body: "Hey " + this.user + "!\nIk zag dat je deze " + 'middag' + ' ' + this.stresspeaks + " stresspieken had. Zou je mij daar meer info over kunnen geven?",
         icon: "https://i.imgur.com/DGlDio3.png",
       });
       notification.onclick = function(event) {
